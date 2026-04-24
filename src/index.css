@@ -1,0 +1,53 @@
+@import "tailwindcss";
+@import "@eigenpal/docx-js-editor/styles.css";
+
+@theme {
+  --color-brand-50: #eef2ff;
+  --color-brand-100: #e0e7ff;
+  --color-brand-200: #c7d2fe;
+  --color-brand-300: #a5b4fc;
+  --color-brand-400: #818cf8;
+  --color-brand-500: #6366f1;
+  --color-brand-600: #4f46e5;
+  --color-brand-700: #4338ca;
+  --color-brand-800: #3730a3;
+  --color-brand-900: #312e81;
+}
+
+html { scroll-behavior: smooth; }
+body { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; background: #fafafa; color: #18181b; }
+
+/* ─── Document prose ─── */
+.prose h1 { font-size: 24px; font-weight: 700; color: #18181b; margin-top: 32px; margin-bottom: 16px; border-bottom: 2px solid #e4e4e7; padding-bottom: 8px; }
+.prose h2 { font-size: 20px; font-weight: 700; color: #1e3a5f; margin-top: 28px; margin-bottom: 12px; }
+.prose h3 { font-size: 17px; font-weight: 600; color: #27272a; margin-top: 24px; margin-bottom: 10px; }
+.prose p { margin-bottom: 14px; line-height: 1.85; color: #18181b; text-align: justify; }
+.prose ul { list-style-type: disc; padding-left: 24px; margin-bottom: 14px; }
+.prose ol { list-style-type: decimal; padding-left: 24px; margin-bottom: 14px; }
+.prose li { margin-bottom: 6px; line-height: 1.75; }
+.prose strong { font-weight: 700; color: #09090b; }
+.prose blockquote { border-left: 4px solid #6366f1; padding-left: 16px; margin: 16px 0; color: #52525b; font-style: italic; }
+.prose code { background: #f4f4f5; padding: 2px 6px; border-radius: 4px; font-size: 13px; font-family: "SF Mono", "Fira Code", monospace; }
+.prose table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+.prose th { background: #f4f4f5; padding: 10px 14px; text-align: left; border: 1px solid #e4e4e7; font-weight: 600; font-size: 13px; }
+.prose td { padding: 10px 14px; border: 1px solid #e4e4e7; font-size: 13px; }
+.prose hr { border: none; border-top: 1px solid #e4e4e7; margin: 24px 0; }
+
+/* ─── Custom scrollbar ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d4d4d8; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #a1a1aa; }
+
+/* ─── Animations ─── */
+@keyframes fade-up { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fade-in { from { opacity: 0; } to { opacity: 1; } }
+.animate-fade-up { animation: fade-up 0.6s ease-out both; }
+.animate-fade-in { animation: fade-in 0.4s ease-out both; }
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+
+/* ─── Input focus ring ─── */
+input:focus, select:focus, textarea:focus { box-shadow: 0 0 0 3px rgba(99,102,241,0.12); }

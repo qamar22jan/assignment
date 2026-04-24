@@ -6,7 +6,7 @@ import { GROQ_MODELS } from '../types';
 interface Props { data: AssignmentInfo; onChange: (d: AssignmentInfo) => void; onSubmit: () => void; onBack: () => void; apiKey: string; onApiKeyChange: (k: string) => void }
 
 const types = ['Essay', 'Research Paper', 'Report', 'Case Study', 'Literature Review', 'Lab Report', 'Term Paper', 'Homework', 'Project Report'];
-const words = ['500-800', '800-1200', '1200-1500', '1500-2000', '2000-3000'];
+const words = ['800-1200', '1200-1800', '1800-2500', '2500-3500', '3500-5000', '5000-7000', '7000-9000'];
 
 const StepTwoForm: React.FC<Props> = ({ data, onChange, onSubmit, onBack, apiKey, onApiKeyChange }) => {
   const [errors, setErrors] = React.useState<Partial<Record<keyof AssignmentInfo | 'apiKey', string>>>({});
@@ -109,7 +109,7 @@ const StepTwoForm: React.FC<Props> = ({ data, onChange, onSubmit, onBack, apiKey
 
         <div>
           <label className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2"><ListChecks className="w-3.5 h-3.5" /> Requirements</label>
-          <textarea value={data.requirements} onChange={e => set('requirements', e.target.value)} placeholder="Any specific instructions..." rows={3} className={`${inp(false)} resize-none`} />
+          <textarea value={data.requirements} onChange={e => set('requirements', e.target.value)} placeholder="Any specific instructions... (example: make this 10 pages with detailed analysis)" rows={3} className={`${inp(false)} resize-none`} />
         </div>
 
         <div className="p-3 bg-emerald-50/50 border border-emerald-100 rounded-xl">

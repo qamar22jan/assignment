@@ -1,5 +1,5 @@
 import React from 'react';
-import { FileText, Sparkles, ArrowRight, Zap, Shield, Globe, ChevronRight } from 'lucide-react';
+import { FileText, Sparkles, ArrowRight, Zap, Shield, Globe, ChevronRight, ShieldCheck } from 'lucide-react';
 import type { Page } from '../types';
 
 interface LandingPageProps {
@@ -9,14 +9,34 @@ interface LandingPageProps {
 
 const tools = [
   {
+    id: 'admin' as const,
+    title: 'Admin Console',
+    description: 'Manage API handling, logs, and user activity from a single operational panel.',
+    icon: <ShieldCheck className="w-6 h-6" />,
+    status: 'live' as const,
+    gradient: 'from-slate-700 to-zinc-900',
+    bg: 'bg-slate-100',
+    features: ['API settings', 'System logs', 'Users activity', 'Security overview'],
+  },
+  {
+    id: 'create' as const,
+    title: 'Create Workspace',
+    description: 'One workspace for chat, document drafting, presentation planning, spreadsheet layout, and voiceover scripts.',
+    icon: <Sparkles className="w-6 h-6" />,
+    status: 'live' as const,
+    gradient: 'from-violet-500 to-fuchsia-500',
+    bg: 'bg-violet-50',
+    features: ['Mode switching', 'Prompt memory', 'Tool-based outputs', 'Shareable links'],
+  },
+  {
     id: 'assignment-maker' as const,
     title: 'Assignment Maker',
-    description: 'Generate complete academic assignments with auto-generated cover pages, AI-written content, and PDF export.',
+    description: 'Generate complete academic assignments with auto-generated cover pages, built-in editing, and PDF export.',
     icon: <FileText className="w-6 h-6" />,
     status: 'live' as const,
     gradient: 'from-indigo-500 to-violet-500',
     bg: 'bg-indigo-50',
-    features: ['Auto cover pages', 'AI content generation', 'Built-in editor', 'PDF export'],
+    features: ['Auto cover pages', 'Content generation', 'Built-in editor', 'PDF export'],
   },
   {
     id: 'coming-soon' as const,
@@ -43,7 +63,7 @@ const tools = [
 const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
   return (
     <div className="min-h-screen bg-white">
-      {/* ─── Nav ─── */}
+      {/* Nav */}
       <nav className="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <button onClick={() => onNavigate('landing')} className="flex items-center gap-2.5">
@@ -53,6 +73,12 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <span className="text-lg font-bold text-gray-900 tracking-tight">StudyForge</span>
           </button>
           <div className="flex items-center gap-6">
+            <button onClick={() => onNavigate('create')} className="text-sm font-semibold text-brand-600 hover:text-brand-700 transition-colors">
+              Create
+            </button>
+            <button onClick={() => onNavigate('admin')} className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
+              Admin
+            </button>
             <button onClick={() => onNavigate('assignment-maker')} className="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
               Assignment Maker
             </button>
@@ -62,15 +88,17 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         </div>
       </nav>
 
-      {/* ─── Hero ─── */}
-      <section className="pt-32 pb-20 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="animate-fade-up">
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50 border border-brand-100 mb-6">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse" />
-              <span className="text-xs font-semibold text-brand-700 tracking-wide">POWERED BY GROQ AI</span>
-            </div>
+      {/* Hero */}
+      <section className="relative overflow-hidden pt-32 pb-20 px-6">
+        <div className="pointer-events-none absolute inset-0 -z-10">
+          <div className="absolute inset-x-0 top-0 h-72 bg-[radial-gradient(circle_at_top,rgba(99,102,241,0.2),transparent_72%)]" />
+          <div className="absolute inset-x-[-14%] top-10 h-[150%] origin-top [transform:perspective(1200px)_rotateX(62deg)]">
+            <div className="h-full w-full rounded-[2rem] border border-brand-100/70 bg-[linear-gradient(to_right,rgba(99,102,241,0.13)_1px,transparent_1px),linear-gradient(to_bottom,rgba(99,102,241,0.13)_1px,transparent_1px)] [background-size:34px_34px] shadow-[0_48px_90px_-70px_rgba(79,70,229,0.9)]" />
           </div>
+          <div className="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-white to-transparent" />
+        </div>
+
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
 
           <h1 className="animate-fade-up delay-100 text-5xl sm:text-6xl font-extrabold text-gray-900 tracking-tight leading-[1.1] mb-6">
             Academic tools that<br />
@@ -80,23 +108,23 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           </h1>
 
           <p className="animate-fade-up delay-200 text-lg text-gray-500 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Generate assignments, cover pages, and academic documents in seconds. AI writes the content — you review, edit, and export as PDF.
+            Generate assignments, cover pages, and academic documents in seconds, then review, edit, and export as PDF.
           </p>
 
           <div className="animate-fade-up delay-300 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
-              onClick={() => onNavigate('assignment-maker')}
+              onClick={() => onNavigate('create')}
               className="group flex items-center gap-2.5 px-7 py-3.5 bg-gray-900 text-white font-semibold rounded-xl hover:bg-gray-800 transition-all shadow-lg shadow-gray-200 hover:shadow-xl active:scale-[0.98]"
             >
-              Start Assignment Maker
+              Open Create Workspace
               <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
             </button>
-            <a
-              href="#tools"
+            <button
+              onClick={() => onNavigate('assignment-maker')}
               className="flex items-center gap-2 px-7 py-3.5 text-gray-700 font-semibold rounded-xl hover:bg-gray-50 transition-all border border-gray-200"
             >
-              View all tools
-            </a>
+              Start Assignment Maker
+            </button>
           </div>
 
           {/* Stats */}
@@ -119,7 +147,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* ─── Tools ─── */}
+      {/* Tools */}
       <section id="tools" className="py-20 px-6 bg-gray-50/50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
@@ -160,7 +188,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* ─── Features ─── */}
+      {/* Features */}
       <section id="features" className="py-20 px-6">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-14">
@@ -170,7 +198,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               { step: '01', title: 'Fill in your details', desc: 'Enter your name, university, subject, instructor — everything the cover page needs.' },
-              { step: '02', title: 'Set your topic', desc: 'Provide the assignment topic and any special requirements. AI does the writing, not the formatting.' },
+              { step: '02', title: 'Set your topic', desc: 'Provide the assignment topic and any special requirements. The generator prepares a complete first draft.' },
               { step: '03', title: 'Edit & export', desc: 'Review the generated content, pick a cover style, make edits if needed, and download as PDF.' },
             ].map(item => (
               <div key={item.step} className="text-center md:text-left">
@@ -183,7 +211,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* ─── Trust bar ─── */}
+      {/* Trust bar */}
       <section className="py-12 px-6 border-y border-gray-100">
         <div className="max-w-4xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-6">
           <Shield className="w-5 h-5 text-gray-400" />
@@ -193,7 +221,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* ─── CTA ─── */}
+      {/* CTA */}
       <section className="py-20 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-bold text-gray-900 mb-4">Ready to try it?</h2>
@@ -208,7 +236,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
         </div>
       </section>
 
-      {/* ─── Footer ─── */}
+      {/* Footer */}
       <footer className="py-8 px-6 border-t border-gray-100">
         <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
@@ -217,7 +245,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             </div>
             <span className="text-sm font-semibold text-gray-900">StudyForge</span>
           </div>
-          <p className="text-xs text-gray-400">Academic tools for students. AI-powered, privacy-first.</p>
+          <p className="text-xs text-gray-400">Academic tools for students. Privacy-first.</p>
         </div>
       </footer>
     </div>

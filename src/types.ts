@@ -21,11 +21,13 @@ export interface AssignmentInfo {
 
 export type AppStep = 'step1' | 'step2' | 'loading' | 'preview';
 
+export type CreateToolMode = 'chat' | 'document' | 'presentation' | 'spreadsheet' | 'voiceover';
+
 export type CoverPageStyle =
   | 'classic' | 'modern' | 'elegant' | 'professional'
   | 'minimalist' | 'corporate' | 'gradient' | 'geometric' | 'typography' | 'academic';
 
-export type Page = 'landing' | 'assignment-maker';
+export type Page = 'landing' | 'assignment-maker' | 'create' | 'admin';
 
 export interface TokenUsage {
   prompt_tokens: number;
@@ -44,8 +46,9 @@ export interface GroqModelOption {
 }
 
 export const GROQ_MODELS: GroqModelOption[] = [
-  { id: 'llama-3.1-8b-instant', label: 'Llama 3.1 8B', tpmLimit: 30000, maxTokens: 3000, description: '⚡ Fast, 30K TPM — free tier safe' },
-  { id: 'llama-3.3-70b-versatile', label: 'Llama 3.3 70B', tpmLimit: 12000, maxTokens: 3000, description: '⭐ Best quality, 12K TPM' },
+  { id: 'llama-3.1-8b-instant', label: 'Llama 3.1 8B', tpmLimit: 30000, maxTokens: 8192, description: '⚡ Fast, 30K TPM — long-form enabled' },
+  { id: 'llama-3.3-70b-versatile', label: 'Llama 3.3 70B', tpmLimit: 12000, maxTokens: 8192, description: '⭐ Best quality, 12K TPM — long-form enabled' },
+  { id: 'groq/compound', label: 'Groq Compound', tpmLimit: 30000, maxTokens: 16384, description: '🔗 Groq Compound — high-throughput, long-form capable' },
 ];
 
 export const COVER_STYLES: { id: CoverPageStyle; emoji: string; label: string }[] = [

@@ -9,7 +9,7 @@ import type { PersonalInfo, AssignmentInfo, AppStep, CoverPageStyle, TokenUsage 
 
 const defaults = {
   personal: { studentName: '', universityLogo: '', section: '', instructorName: '', subjectName: '', universityName: '', rollNumber: '', submissionDate: new Date().toISOString().split('T')[0] } as PersonalInfo,
-  assignment: { assignmentTopic: '', requirements: '', subjectForAI: '', assignmentType: 'Essay', wordCount: '800-1200', referenceImage: '', modelId: 'llama-3.1-8b-instant' } as AssignmentInfo,
+  assignment: { assignmentTopic: '', requirements: '', subjectForAI: '', assignmentType: 'Essay', wordCount: '2500-3500', referenceImage: '', modelId: 'llama-3.1-8b-instant' } as AssignmentInfo,
 };
 
 interface Props { onBack: () => void }
